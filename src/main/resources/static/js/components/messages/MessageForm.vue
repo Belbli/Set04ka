@@ -1,5 +1,5 @@
 <template>
-    <v-layout row>
+    <v-layout row class="px-7">
         <v-text-field
                 label="New message"
                 placeholder="Write something"
