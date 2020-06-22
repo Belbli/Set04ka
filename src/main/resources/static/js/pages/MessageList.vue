@@ -7,6 +7,7 @@
                          :message="message"
                          :editMessage="editMessage"
                          :deleteMessage="deleteMessage" />
+            <lazy-loader></lazy-loader>
         </v-layout>
     </v-container>
 </template>
@@ -15,9 +16,10 @@
     import { mapGetters } from 'vuex'
     import MessageRow from 'components/messages/MessageRow.vue'
     import MessageForm from 'components/messages/MessageForm.vue'
-    import messagesApi from 'api/messages'
+    import LazyLoader from '../components/LazyLoader.vue'
     export default {
         components: {
+            LazyLoader,
             MessageRow,
             MessageForm
         },
@@ -30,16 +32,6 @@
         methods: {
             editMessage(message) {
                 this.message = message
-            },
-            deleteMessage(message) {
-                messagesApi.remove(message.id).then(result => {
-                    if (result.ok) {
-                        const index = this.messages.indexOf(message)
-                        if(index > -1){
-                            this.messages.splice(index, 1)
-                        }
-                    }
-                })
             }
         }
     }
